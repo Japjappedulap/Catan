@@ -1,6 +1,6 @@
 import random
 
-INF = 999999
+INF = 9999999
 
 
 class ClassicState:

@@ -2,6 +2,9 @@ import numpy
 
 
 class CatanMap:
+    triple_coefficient = [9, 10]
+    pair_coefficient = [4, 8]
+
     def __init__(self):
         self.tile = []
         self.tile_dice = []
@@ -20,14 +23,6 @@ class CatanMap:
 
     def get_resource_distribution(self):
         return self.resource_distribution
-
-    def completed(self):
-        if not self.no_identic_neighbours():
-            return False
-        for i in self.tile:
-            if i == 0:
-                return False
-        return True
 
     def no_identic_neighbours(self):
         for i in self.neighbor_recurrence:
@@ -83,7 +78,8 @@ class CatanMap:
             prob = []
             for i in self.resource_distribution.configuration:
                 for j in self.resource_distribution.configuration[i]:
-                    if 4 <= self.dice_probability[tile_dice] + self.dice_probability[j] <= 7:
+                    if self.pair_coefficient[0] <= self.dice_probability[tile_dice] + self.dice_probability[j] <= \
+                            self.pair_coefficient[1]:
                         coefficient = 8
                         candidates.append((i, j))
                         coefficient += len(self.resource_distribution.configuration[i])
@@ -111,7 +107,7 @@ class CatanMap:
         except Exception:
             raise Exception
 
-    def generate_next_tile_possibilities_closed_triple(self, index1, index2):
+    def generate_next_tile_possibilities_simple_triple(self, index1, index2):
         try:
             tile1_resource = self.tile[index1]  # already set
             tile1_dice = self.tile_dice[index1]  # already set
@@ -122,8 +118,8 @@ class CatanMap:
             prob = []
             for i in self.resource_distribution.configuration:
                 for j in self.resource_distribution.configuration[i]:
-                    if 8 <= self.dice_probability[tile1_dice] + self.dice_probability[j] + \
-                            self.dice_probability[tile2_dice] <= 10:
+                    if self.triple_coefficient[0] <= self.dice_probability[tile1_dice] + self.dice_probability[j] + \
+                            self.dice_probability[tile2_dice] <= self.triple_coefficient[1]:
                         coefficient = 8
                         candidates.append((i, j))
                         coefficient += len(self.resource_distribution.configuration[i])
@@ -167,8 +163,8 @@ class CatanMap:
             prob = []
             for i in self.resource_distribution.configuration:
                 for j in self.resource_distribution.configuration[i]:
-                    if 4 <= self.dice_probability[tile1_dice] + self.dice_probability[j] <= 7 \
-                            and 4 <= self.dice_probability[tile2_dice] + self.dice_probability[j] <= 7:
+                    if self.pair_coefficient[0] <= self.dice_probability[tile1_dice] + self.dice_probability[j] <= self.pair_coefficient[1] \
+                            and self.pair_coefficient[0] <= self.dice_probability[tile2_dice] + self.dice_probability[j] <= self.pair_coefficient[1]:
                         coefficient = 20
                         candidates.append((i, j))
                         coefficient += len(self.resource_distribution.configuration[i])
@@ -216,13 +212,13 @@ class CatanMap:
             prob = []
             for i in self.resource_distribution.configuration:
                 for j in self.resource_distribution.configuration[i]:
-                    if 7 <= self.dice_probability[tile1_dice] + \
+                    if self.triple_coefficient[0] <= self.dice_probability[tile1_dice] + \
                             self.dice_probability[tile2_dice] + \
-                            self.dice_probability[j] <= 10 \
-                            and 7 <= \
+                            self.dice_probability[j] <= self.triple_coefficient[1] \
+                            and self.triple_coefficient[0] <=  \
                             self.dice_probability[tile1_dice] + \
                             self.dice_probability[tile3_dice] + \
-                            self.dice_probability[j] <= 10:
+                            self.dice_probability[j] <= self.triple_coefficient[1]:
                         coefficient = 18
                         candidates.append((i, j))
                         coefficient += len(self.resource_distribution.configuration[i])

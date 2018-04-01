@@ -117,7 +117,7 @@ class ExtendedTable(CatanMap):
                         and isinstance(self.tile_pairs[index][0], tuple) \
                         and self.tile[self.tile_pairs[index][0][0]] != 0 \
                         and self.tile[self.tile_pairs[index][0][1]] != 0:
-                    next_tile_resource_and_dice = self.generate_next_tile_possibilities_closed_triple(
+                    next_tile_resource_and_dice = self.generate_next_tile_possibilities_simple_triple(
                         self.tile_pairs[index][0][0],
                         self.tile_pairs[index][0][1])
                     # print("closed triple:", next_tile_resource_and_dice)
@@ -153,8 +153,31 @@ class ExtendedTable(CatanMap):
                 # print()
             return True
         except Exception as e:
-            # print("failed:", e)
+            print("failed:", e)
             return False
+
+    def chained_identic_neighbours(self, max_number):
+        count = {}
+        for i in self.neighbor_recurrence:
+            count[i] = 1
+            for j in self.neighbor_recurrence[i]:
+                if self.tile[i] == self.tile[j]:
+                    count[i] += 1
+        result = 0
+        for i in count:
+            if count[i] == max_number:
+                result += 1
+            elif count[i] > max_number:
+                return False
+        if result >= 1:
+            return False
+        return True
+
+    def completed(self):
+        for i in self.tile:
+            if i == 0:
+                return False
+        return self.chained_identic_neighbours(2)
 
     def dbg(self):
         print("\t\t\t\t  %4s%2d\t\t%4s%2d\t\t%4s%2d\t\t%4s%2d" % (

@@ -8,7 +8,7 @@ def classic():
     # no_player = 6  # desert in center
     # no_player = 7  # desert in edge
     # no_player = 8  # desert in inner circle
-
+    print("Generating classic map...")
     start_time = datetime.datetime.now()
     x = SimpleTable()
     x.generate_map(no_player)
@@ -22,6 +22,7 @@ def classic():
 
 
 def extended():
+    print("Generating extended map...")
     start_time = datetime.datetime.now()
     no_player = 6
     x = ExtendedTable()
@@ -39,5 +40,5 @@ def extended():
 
 if __name__ == '__main__':
     # test()
-    # classic()
-    extended()
+    classic()
+    # extended()

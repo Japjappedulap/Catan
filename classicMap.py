@@ -151,7 +151,7 @@ class SimpleTable(CatanMap):
                         and isinstance(self.tile_pairs[index][0], tuple) \
                         and self.tile[self.tile_pairs[index][0][0]] != 0 \
                         and self.tile[self.tile_pairs[index][0][1]] != 0:
-                    next_tile_resource_and_dice = self.generate_next_tile_possibilities_closed_triple(
+                    next_tile_resource_and_dice = self.generate_next_tile_possibilities_simple_triple(
                         self.tile_pairs[index][0][0],
                         self.tile_pairs[index][0][1])
                     # print("closed triple:", next_tile_resource_and_dice)
@@ -189,6 +189,14 @@ class SimpleTable(CatanMap):
         except Exception as e:
             # print("failed:", e)
             return False
+
+    def completed(self):
+        if not self.no_identic_neighbours():
+            return False
+        for i in self.tile:
+            if i == 0:
+                return False
+        return True
 
     def rotate(self):
         save0 = self.tile[0]
