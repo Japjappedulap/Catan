@@ -163,8 +163,13 @@ class CatanMap:
             prob = []
             for i in self.resource_distribution.configuration:
                 for j in self.resource_distribution.configuration[i]:
-                    if self.pair_coefficient[0] <= self.dice_probability[tile1_dice] + self.dice_probability[j] <= self.pair_coefficient[1] \
-                            and self.pair_coefficient[0] <= self.dice_probability[tile2_dice] + self.dice_probability[j] <= self.pair_coefficient[1]:
+                    if self.pair_coefficient[0] <= \
+                            self.dice_probability[tile1_dice] + self.dice_probability[j] <= \
+                            self.pair_coefficient[1] \
+                            and \
+                            self.pair_coefficient[0] <= \
+                            self.dice_probability[tile2_dice] + self.dice_probability[j] <= \
+                            self.pair_coefficient[1]:
                         coefficient = 20
                         candidates.append((i, j))
                         coefficient += len(self.resource_distribution.configuration[i])
@@ -215,7 +220,7 @@ class CatanMap:
                     if self.triple_coefficient[0] <= self.dice_probability[tile1_dice] + \
                             self.dice_probability[tile2_dice] + \
                             self.dice_probability[j] <= self.triple_coefficient[1] \
-                            and self.triple_coefficient[0] <=  \
+                            and self.triple_coefficient[0] <= \
                             self.dice_probability[tile1_dice] + \
                             self.dice_probability[tile3_dice] + \
                             self.dice_probability[j] <= self.triple_coefficient[1]:

@@ -1,6 +1,6 @@
 import datetime
-from classicMap import SimpleTable
-from extendedMap import ExtendedTable
+from ClassicMap import SimpleTable
+from ExtendedMap import ExtendedTable
 
 
 def classic():
