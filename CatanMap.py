@@ -2,7 +2,7 @@ import numpy
 
 
 class CatanMap:
-    triple_coefficient = [9, 10]
+    triple_coefficient = [8, 10]
     pair_coefficient = [4, 8]
     pair_peak = pair_coefficient[0] + pair_coefficient[1] / 2
     triple_peak = triple_coefficient[0] + triple_coefficient[1] / 2
