@@ -4,8 +4,9 @@ from ExtendedMap import ExtendedTable
 
 
 def classic():
-    no_player = 5  # desert on corner
-    # no_player = 6  # desert in center
+    # no_player = 2
+    # no_player = 5  # desert on corner
+    no_player = 6  # desert in center
     # no_player = 7  # desert in edge
     # no_player = 8  # desert in inner circle
     print("Generating classic map...")

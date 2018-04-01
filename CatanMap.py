@@ -4,6 +4,8 @@ import numpy
 class CatanMap:
     triple_coefficient = [9, 10]
     pair_coefficient = [4, 8]
+    pair_peak = pair_coefficient[0] + pair_coefficient[1] / 2
+    triple_peak = triple_coefficient[0] + triple_coefficient[1] / 2
 
     def __init__(self):
         self.tile = []
@@ -84,8 +86,8 @@ class CatanMap:
                         candidates.append((i, j))
                         coefficient += len(self.resource_distribution.configuration[i])
                         coefficient += self.dice_probability[j]
-                        coefficient = coefficient - 2 * abs(5.5 - (self.dice_probability[tile_dice] +
-                                                                   self.dice_probability[j])) ** 2
+                        coefficient = coefficient - 2 * abs(self.pair_peak - (self.dice_probability[tile_dice] +
+                                                                              self.dice_probability[j])) ** 2
                         if i == tile_resource:
                             coefficient /= 4
                         else:
@@ -119,14 +121,24 @@ class CatanMap:
             for i in self.resource_distribution.configuration:
                 for j in self.resource_distribution.configuration[i]:
                     if self.triple_coefficient[0] <= self.dice_probability[tile1_dice] + self.dice_probability[j] + \
-                            self.dice_probability[tile2_dice] <= self.triple_coefficient[1]:
+                            self.dice_probability[tile2_dice] <= self.triple_coefficient[1] and \
+                            self.pair_coefficient[0] <= \
+                            self.dice_probability[j] + self.dice_probability[tile1_dice] <= \
+                            self.pair_coefficient[1] and \
+                            self.pair_coefficient[0] <= \
+                            self.dice_probability[j] + self.dice_probability[tile2_dice] <= \
+                            self.pair_coefficient[1]:
                         coefficient = 8
                         candidates.append((i, j))
                         coefficient += len(self.resource_distribution.configuration[i])
                         coefficient += self.dice_probability[j]
-                        coefficient -= 2 * abs(9 - (self.dice_probability[tile1_dice] +
-                                                    self.dice_probability[tile2_dice] +
-                                                    self.dice_probability[j])) ** 2
+                        coefficient -= 2 * (abs(self.triple_peak - (self.dice_probability[tile1_dice] +
+                                                                    self.dice_probability[tile2_dice] +
+                                                                    self.dice_probability[j])) ** 2 +
+                                            abs(self.pair_peak - (self.dice_probability[tile1_dice] +
+                                                                  self.dice_probability[j])) ** 2 +
+                                            abs(self.pair_peak - (self.dice_probability[tile2_dice] +
+                                                                  self.dice_probability[j])) ** 2)
                         if i == tile1_resource:
                             coefficient /= 4
                         elif i != tile1_resource:
@@ -174,10 +186,10 @@ class CatanMap:
                         candidates.append((i, j))
                         coefficient += len(self.resource_distribution.configuration[i])
                         coefficient += self.dice_probability[j]
-                        coefficient -= 2 * (abs(5.5 - (self.dice_probability[tile1_dice] +
-                                                       self.dice_probability[j])) ** 2 +
-                                            abs(5.5 - (self.dice_probability[tile2_dice] +
-                                                       self.dice_probability[j])) ** 2)
+                        coefficient -= 2 * (abs(self.pair_peak - (self.dice_probability[tile1_dice] +
+                                                                  self.dice_probability[j])) ** 2 +
+                                            abs(self.pair_peak - (self.dice_probability[tile2_dice] +
+                                                                  self.dice_probability[j])) ** 2)
                         if i == tile1_resource:
                             coefficient /= 4
                         elif i != tile1_resource:
@@ -219,11 +231,14 @@ class CatanMap:
                 for j in self.resource_distribution.configuration[i]:
                     if self.triple_coefficient[0] <= self.dice_probability[tile1_dice] + \
                             self.dice_probability[tile2_dice] + \
-                            self.dice_probability[j] <= self.triple_coefficient[1] \
-                            and self.triple_coefficient[0] <= \
-                            self.dice_probability[tile1_dice] + \
-                            self.dice_probability[tile3_dice] + \
-                            self.dice_probability[j] <= self.triple_coefficient[1]:
+                            self.dice_probability[j] <= self.triple_coefficient[1] and \
+                            self.triple_coefficient[0] <= \
+                            self.dice_probability[tile1_dice] + self.dice_probability[tile3_dice] + \
+                            self.dice_probability[j] <= self.triple_coefficient[1] and \
+                            self.pair_coefficient[0] <= self.dice_probability[tile2_dice] + self.dice_probability[j] <=\
+                            self.pair_coefficient[1] and \
+                            self.pair_coefficient[0] <= self.dice_probability[tile3_dice] + self.dice_probability[j] <=\
+                            self.pair_coefficient[1]:
                         coefficient = 18
                         candidates.append((i, j))
                         coefficient += len(self.resource_distribution.configuration[i])
@@ -232,12 +247,16 @@ class CatanMap:
                             coefficient -= 1
                         else:
                             coefficient += 1
-                        coefficient -= 2 * (abs(9 - (self.dice_probability[tile1_dice] +
-                                                     self.dice_probability[tile2_dice] +
-                                                     self.dice_probability[j])) ** 2 +
-                                            abs(9 - (self.dice_probability[tile1_dice] +
-                                                     self.dice_probability[tile3_dice] +
-                                                     self.dice_probability[j])) ** 2)
+                        coefficient -= 2 * (abs(self.triple_peak - (self.dice_probability[tile1_dice] +
+                                                                    self.dice_probability[tile2_dice] +
+                                                                    self.dice_probability[j])) ** 2 +
+                                            abs(self.triple_peak - (self.dice_probability[tile1_dice] +
+                                                                    self.dice_probability[tile3_dice] +
+                                                                    self.dice_probability[j])) ** 2 +
+                                            abs(self.pair_peak - (self.dice_probability[j] +
+                                                                  self.dice_probability[tile2_dice])) ** 2 +
+                                            abs(self.pair_peak - (self.dice_probability[j] +
+                                                                  self.dice_probability[tile3_dice])) ** 2)
                         if i == tile1_resource:
                             coefficient /= 4
                         elif i != tile1_resource:
