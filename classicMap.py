@@ -16,22 +16,27 @@ class SimpleTable(CatanMap):
         self.neighbor_recurrence[0] = []
         self.neighbor_recurrence[1] = [0]
         self.neighbor_recurrence[2] = [1]
+
         self.neighbor_recurrence[3] = [0]
         self.neighbor_recurrence[4] = [3, 0, 1]
         self.neighbor_recurrence[5] = [4, 1, 2]
         self.neighbor_recurrence[6] = [5, 2]
+
         self.neighbor_recurrence[7] = [3]
         self.neighbor_recurrence[8] = [7, 3, 4]
         self.neighbor_recurrence[9] = [8, 4, 5]
         self.neighbor_recurrence[10] = [9, 5, 6]
         self.neighbor_recurrence[11] = [10, 6]
+
         self.neighbor_recurrence[12] = [7, 8]
         self.neighbor_recurrence[13] = [12, 8, 9]
         self.neighbor_recurrence[14] = [13, 9, 10]
         self.neighbor_recurrence[15] = [14, 10, 11]
+
         self.neighbor_recurrence[16] = [12, 13]
         self.neighbor_recurrence[17] = [16, 13, 14]
         self.neighbor_recurrence[18] = [17, 14, 15]
+
         self.resource_pool = {1: 4, 2: 4, 3: 4, 4: 3, 5: 3, 6: 1}
         self.tile_to_name = {0: "none", 1: "LUMB", 2: "WOOL", 3: "GRAI", 4: "OREE", 5: "CLAY", 6: "DESE"}
         self.name_to_tile = {"LUMB": 1, "WOOL": 2, "GRAI": 3, "OREE": 4, "CLAY": 5, "DESE": 6}
