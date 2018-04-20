@@ -4,7 +4,7 @@ import DiceState
 from CatanMap import CatanMap
 
 
-class SimpleTable(CatanMap):
+class ClassicMap(CatanMap):
     def __init__(self):
         super().__init__()
         self.tile = []
@@ -16,22 +16,27 @@ class SimpleTable(CatanMap):
         self.neighbor_recurrence[0] = []
         self.neighbor_recurrence[1] = [0]
         self.neighbor_recurrence[2] = [1]
+
         self.neighbor_recurrence[3] = [0]
         self.neighbor_recurrence[4] = [3, 0, 1]
         self.neighbor_recurrence[5] = [4, 1, 2]
         self.neighbor_recurrence[6] = [5, 2]
+
         self.neighbor_recurrence[7] = [3]
         self.neighbor_recurrence[8] = [7, 3, 4]
         self.neighbor_recurrence[9] = [8, 4, 5]
         self.neighbor_recurrence[10] = [9, 5, 6]
         self.neighbor_recurrence[11] = [10, 6]
+
         self.neighbor_recurrence[12] = [7, 8]
         self.neighbor_recurrence[13] = [12, 8, 9]
         self.neighbor_recurrence[14] = [13, 9, 10]
         self.neighbor_recurrence[15] = [14, 10, 11]
+
         self.neighbor_recurrence[16] = [12, 13]
         self.neighbor_recurrence[17] = [16, 13, 14]
         self.neighbor_recurrence[18] = [17, 14, 15]
+
         self.resource_pool = {1: 4, 2: 4, 3: 4, 4: 3, 5: 3, 6: 1}
         self.tile_to_name = {0: "none", 1: "LUMB", 2: "WOOL", 3: "GRAI", 4: "OREE", 5: "CLAY", 6: "DESE"}
         self.name_to_tile = {"LUMB": 1, "WOOL": 2, "GRAI": 3, "OREE": 4, "CLAY": 5, "DESE": 6}
@@ -187,8 +192,9 @@ class SimpleTable(CatanMap):
                 # print()
             return True
         except Exception as e:
-            # print("failed:", e)
-            return False
+            if e is not None:
+                return False
+            return True
 
     def completed(self):
         if not self.no_identic_neighbours():
@@ -273,3 +279,44 @@ class SimpleTable(CatanMap):
             self.tile_to_name[self.tile[18]], self.tile_dice[18]))
         print()
         print()
+
+    def clear(self):
+        self.tile = []
+        self.tile_dice = []
+        self.neighbor_recurrence = {}
+        for i in range(19):
+            self.tile.append(0)
+            self.tile_dice.append(-1)
+        self.neighbor_recurrence[0] = []
+        self.neighbor_recurrence[1] = [0]
+        self.neighbor_recurrence[2] = [1]
+
+        self.neighbor_recurrence[3] = [0]
+        self.neighbor_recurrence[4] = [3, 0, 1]
+        self.neighbor_recurrence[5] = [4, 1, 2]
+        self.neighbor_recurrence[6] = [5, 2]
+
+        self.neighbor_recurrence[7] = [3]
+        self.neighbor_recurrence[8] = [7, 3, 4]
+        self.neighbor_recurrence[9] = [8, 4, 5]
+        self.neighbor_recurrence[10] = [9, 5, 6]
+        self.neighbor_recurrence[11] = [10, 6]
+
+        self.neighbor_recurrence[12] = [7, 8]
+        self.neighbor_recurrence[13] = [12, 8, 9]
+        self.neighbor_recurrence[14] = [13, 9, 10]
+        self.neighbor_recurrence[15] = [14, 10, 11]
+
+        self.neighbor_recurrence[16] = [12, 13]
+        self.neighbor_recurrence[17] = [16, 13, 14]
+        self.neighbor_recurrence[18] = [17, 14, 15]
+
+        self.resource_pool = {1: 4, 2: 4, 3: 4, 4: 3, 5: 3, 6: 1}
+        self.tile_to_name = {0: "none", 1: "LUMB", 2: "WOOL", 3: "GRAI", 4: "OREE", 5: "CLAY", 6: "DESE"}
+        self.name_to_tile = {"LUMB": 1, "WOOL": 2, "GRAI": 3, "OREE": 4, "CLAY": 5, "DESE": 6}
+        self.dices_available = {2: 1, 3: 2, 4: 2, 5: 2, 6: 2, 8: 2, 9: 2, 10: 2, 11: 2, 12: 1}
+        self.dice_probability = {2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 7: 6, 8: 5, 9: 4, 10: 3, 11: 2, 12: 1}
+        self.resource_distribution = state.ClassicState()
+        self.tile_pairs = []
+        for i in range(19):
+            self.tile_pairs.append([])

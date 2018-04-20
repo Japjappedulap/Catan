@@ -1,8 +1,8 @@
-import DiceState
+import state
 from CatanMap import CatanMap
 
 
-class ExtendedTable(CatanMap):
+class ExtendedMap(CatanMap):
     def __init__(self):
         super().__init__()
         self.tile = []
@@ -51,7 +51,7 @@ class ExtendedTable(CatanMap):
         self.tile_to_name = {0: "none", 1: "LUMB", 2: "WOOL", 3: "GRAI", 4: "OREE", 5: "CLAY", 6: "DESE"}
         self.name_to_tile = {"LUMB": 1, "WOOL": 2, "GRAI": 3, "OREE": 4, "CLAY": 5, "DESE": 6}
         self.dice_probability = {2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 7: 6, 8: 5, 9: 4, 10: 3, 11: 2, 12: 1}
-        self.resource_distribution = DiceState.ExtendedDiceState()
+        self.resource_distribution = state.ExtendedState()
         self.tile_pairs = []
         for i in range(30):
             self.tile_pairs.append([])
@@ -117,7 +117,7 @@ class ExtendedTable(CatanMap):
                         and isinstance(self.tile_pairs[index][0], tuple) \
                         and self.tile[self.tile_pairs[index][0][0]] != 0 \
                         and self.tile[self.tile_pairs[index][0][1]] != 0:
-                    next_tile_resource_and_dice = self.generate_next_tile_possibilities_simple_triple(
+                    next_tile_resource_and_dice = self.generate_next_tile_possibilities_closed_triple(
                         self.tile_pairs[index][0][0],
                         self.tile_pairs[index][0][1])
                     # print("closed triple:", next_tile_resource_and_dice)
@@ -153,31 +153,9 @@ class ExtendedTable(CatanMap):
                 # print()
             return True
         except Exception as e:
-            print("failed:", e)
-            return False
-
-    def chained_identic_neighbours(self, max_number):
-        count = {}
-        for i in self.neighbor_recurrence:
-            count[i] = 1
-            for j in self.neighbor_recurrence[i]:
-                if self.tile[i] == self.tile[j]:
-                    count[i] += 1
-        result = 0
-        for i in count:
-            if count[i] == max_number:
-                result += 1
-            elif count[i] > max_number:
+            if e is not None:
                 return False
-        if result >= 1:
-            return False
-        return True
-
-    def completed(self):
-        for i in self.tile:
-            if i == 0:
-                return False
-        return self.chained_identic_neighbours(2)
+            return True
 
     def dbg(self):
         print("\t\t\t\t  %4s%2d\t\t%4s%2d\t\t%4s%2d\t\t%4s%2d" % (
@@ -223,3 +201,55 @@ class ExtendedTable(CatanMap):
             self.tile_to_name[self.tile[29]], self.tile_dice[29]))
         print()
         print()
+
+    def clear(self):
+        self.tile = []
+        self.tile_dice = []
+        self.neighbor_recurrence = {}
+        for i in range(30):
+            self.tile.append(0)
+            self.tile_dice.append(-1)
+        self.neighbor_recurrence[0] = []
+        self.neighbor_recurrence[1] = [0]
+        self.neighbor_recurrence[2] = [1]
+        self.neighbor_recurrence[3] = [2]
+
+        self.neighbor_recurrence[4] = [0]
+        self.neighbor_recurrence[5] = [4, 0, 1]
+        self.neighbor_recurrence[6] = [5, 1, 2]
+        self.neighbor_recurrence[7] = [6, 2, 3]
+        self.neighbor_recurrence[8] = [7, 3]
+
+        self.neighbor_recurrence[9] = [4]
+        self.neighbor_recurrence[10] = [9, 4, 5]
+        self.neighbor_recurrence[11] = [10, 5, 6]
+        self.neighbor_recurrence[12] = [11, 6, 7]
+        self.neighbor_recurrence[13] = [12, 7, 8]
+        self.neighbor_recurrence[14] = [13, 8]
+
+        self.neighbor_recurrence[15] = [9]
+        self.neighbor_recurrence[16] = [15, 9, 10]
+        self.neighbor_recurrence[17] = [16, 10, 11]
+        self.neighbor_recurrence[18] = [17, 11, 12]
+        self.neighbor_recurrence[19] = [18, 12, 13]
+        self.neighbor_recurrence[20] = [19, 13, 14]
+
+        self.neighbor_recurrence[21] = [15, 16]
+        self.neighbor_recurrence[22] = [21, 16, 17]
+        self.neighbor_recurrence[23] = [22, 17, 18]
+        self.neighbor_recurrence[24] = [23, 18, 19]
+        self.neighbor_recurrence[25] = [24, 19, 20]
+
+        self.neighbor_recurrence[26] = [21, 22]
+        self.neighbor_recurrence[27] = [26, 22, 23]
+        self.neighbor_recurrence[28] = [27, 23, 24]
+        self.neighbor_recurrence[29] = [28, 24, 25]
+
+        self.resource_pool = {1: 6, 2: 6, 3: 6, 4: 5, 5: 5, 6: 2}
+        self.tile_to_name = {0: "none", 1: "LUMB", 2: "WOOL", 3: "GRAI", 4: "OREE", 5: "CLAY", 6: "DESE"}
+        self.name_to_tile = {"LUMB": 1, "WOOL": 2, "GRAI": 3, "OREE": 4, "CLAY": 5, "DESE": 6}
+        self.dice_probability = {2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 7: 6, 8: 5, 9: 4, 10: 3, 11: 2, 12: 1}
+        self.resource_distribution = state.ExtendedState()
+        self.tile_pairs = []
+        for i in range(30):
+            self.tile_pairs.append([])
