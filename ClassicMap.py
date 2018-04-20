@@ -156,7 +156,7 @@ class ClassicMap(CatanMap):
                         and isinstance(self.tile_pairs[index][0], tuple) \
                         and self.tile[self.tile_pairs[index][0][0]] != 0 \
                         and self.tile[self.tile_pairs[index][0][1]] != 0:
-                    next_tile_resource_and_dice = self.generate_next_tile_possibilities_simple_triple(
+                    next_tile_resource_and_dice = self.generate_next_tile_possibilities_closed_triple(
                         self.tile_pairs[index][0][0],
                         self.tile_pairs[index][0][1])
                     # print("closed triple:", next_tile_resource_and_dice)
@@ -316,7 +316,7 @@ class ClassicMap(CatanMap):
         self.name_to_tile = {"LUMB": 1, "WOOL": 2, "GRAI": 3, "OREE": 4, "CLAY": 5, "DESE": 6}
         self.dices_available = {2: 1, 3: 2, 4: 2, 5: 2, 6: 2, 8: 2, 9: 2, 10: 2, 11: 2, 12: 1}
         self.dice_probability = {2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 7: 6, 8: 5, 9: 4, 10: 3, 11: 2, 12: 1}
-        self.resource_distribution = state.ClassicState()
+        self.resource_distribution = DiceState.ClassicDiceState()
         self.tile_pairs = []
         for i in range(19):
             self.tile_pairs.append([])

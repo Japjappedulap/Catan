@@ -1,7 +1,5 @@
 import numpy
 
-from Statistics import Statistics
-
 
 class CatanMap:
     # GLOBAL variables

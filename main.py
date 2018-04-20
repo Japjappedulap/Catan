@@ -1,8 +1,7 @@
 import datetime
-import pickle
 
-from classicMap import ClassicMap
-from extendedMap import ExtendedMap
+from ClassicMap import ClassicMap
+from ExtendedMap import ExtendedMap
 
 
 def classic():
