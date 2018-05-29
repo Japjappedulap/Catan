@@ -1,6 +1,6 @@
 
 # Catan
-:video_game: A map generator for Catan, both classic game and extended. 
+:game_die: A map generator for Catan, both classic game and extended. 
 
 For now, no seafarers supported, but maybe in the future it will, who knows.
 This was developed with `numpy`, so if you don't have it already, please install it. Amazing tool for probabilities and statistics and all sorts of stuff.
