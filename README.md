@@ -16,20 +16,20 @@ This was developed with `numpy`, so if you don't have it already, please install
  #### Use
  - For generating a classic map, just run `python3 classic.py`. The result should be something like this:
 
-                    DESE 0      OREE 6       LUMB 2	
-              GRAI 8	     WOOL 3      CLAY10	  WOOL 9	
-        WOOL12      OREE10	    LUMB 6	   GRAI11	 CLAY 5	
-              CLAY 8	     GRAI 3      WOOL 4	  LUMB 9	
-                    LUMB11	    OREE 5	   GRAI 4	
+                    DESE 0      OREE 6      LUMB 2	
+              GRAI 8      WOOL 3      CLAY10      WOOL 9	
+        WOOL12      OREE10      LUMB 6      GRAI11      CLAY 5	
+              CLAY 8      GRAI 3      WOOL 4      LUMB 9	
+                    LUMB11      OREE 5      GRAI 4	
  
  - For generating a extended map, run `python3 extended.py`. Careful at this one, the map isn't symmetric
  
-                          DESE 0      OREE 8	     WOOL12      GRAI 8
-                    LUMB 9	     WOOL11	     GRAI 4	     OREE 5	     LUMB12
-              OREE 3	     CLAY10      LUMB 6      CLAY 3      GRAI 9	     CLAY 6
-        CLAY 6	     GRAI 4	     WOOL 3	     OREE10	     WOOL 9	     LUMB 2
-              LUMB11	     CLAY 5      LUMB10	     GRAI11      OREE 5
-                    WOOL 4	     GRAI 2	     WOOL 8	     DESE 0
+                          DESE 0      OREE 8      WOOL12      GRAI 8
+                    LUMB 9      WOOL11      GRAI 4      OREE 5      LUMB12
+              OREE 3      CLAY10      LUMB 6      CLAY 3      GRAI 9     CLAY 6
+        CLAY 6      GRAI 4      WOOL 3      OREE10      WOOL 9      LUMB 2
+              LUMB11      CLAY 5      LUMB10      GRAI11      OREE 5
+                    WOOL 4      GRAI 2      WOOL 8      DESE 0
 
 > **Note**: generations will take time, maybe a lot of time, do not be surprised if you wait 3-4 minutes for an extended map. A classic map should be rendered in no more than one minute.
 ##### Reading this mess
