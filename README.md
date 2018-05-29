@@ -42,7 +42,7 @@ Each 'entry' consists of a resource tile and a dice number `GRAI 9` means a grai
 - `CLAY` = Clay 
 
 ## Why this?
-The maps generated aren't always perfect, but they're getting as closest as ever to perfection. The distribution of dice numbers across the resources is extremely balanced. The positioning of all tiles is done such that no place is favored over the other, there is no *really good* spot, most of them are equally good, and equally balanced. Of course, it's still the rolled dice which dictates the game, but the map is equally balanced.
+The maps generated aren't always perfect, but they're getting as close as ever to perfection. The distribution of dice numbers across the resources is extremely balanced. The positioning of all tiles is done such that no place is favored over the other, there is no *really good* spot, most of them are equally good, and equally balanced. Of course, it's still the rolled dice which dictates the game, but the map is equally balanced.
 
 #### Still missing
 Even if the tiles placement is great, there is a single lacking feature. The harbor :anchor: configurations. You can still place the tiles rotated as you want, to make the entire map more enjoyable, just don't overdo it.
