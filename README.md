@@ -10,7 +10,7 @@ This was developed with `numpy`, so if you don't have it already, please install
 - First, clone/download the repository: 
 `git clone https://github.com/Japjappedulap/Catan.git`
 
- - Install `numpy` **(optional)**: 
+ - Install `numpy` (if you don't already have it): 
  `pip3 install numpy`
 
  #### Use
