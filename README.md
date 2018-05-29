@@ -2,7 +2,7 @@
 # Catan
 :game_die: A map generator for Catan, both classic game and extended. 
 
-For now, no seafarers supported, but maybe in the future it will, who knows.
+For now, no seafarers supported, but maybe in the future, it will, who knows.
 This was developed with `numpy`, so if you don't have it already, please install it. Amazing tool for probabilities and statistics and all sorts of stuff.
 
 ## How to use
@@ -22,7 +22,7 @@ This was developed with `numpy`, so if you don't have it already, please install
               CLAY 8      GRAI 3      WOOL 4      LUMB 9	
                     LUMB11      OREE 5      GRAI 4	
  
- - For generating a extended map, run `python3 extended.py`. Careful at this one, the map isn't symmetric
+ - For generating an extended map, run `python3 extended.py`. Careful at this one, the map isn't symmetric
  
                           DESE 0      OREE 8      WOOL12      GRAI 8
                     LUMB 9      WOOL11      GRAI 4      OREE 5      LUMB12
@@ -42,7 +42,7 @@ Each 'entry' consists of a resource tile and a dice number `GRAI 9` means a grai
 - `CLAY` = Clay 
 
 ## Why this?
-The maps generated aren't always perfect, but they're getting as close as ever to perfection. The distribution of dice numbers across the resources is extremely balanced. The positioning of all tiles is done such that no place is favored over the other, there is no *really good* spot, most of them are equally good, and equally balanced. Of course, it's still the rolled dice which dictates the game, but at least, the map is balanced.
+The maps generated aren't always perfect, but they're getting as close as ever to perfection. The distribution of dice numbers across the resources is extremely balanced. The positioning of all tiles is done such that no place is favored over the other, there is no *really good* spot, most of them are equally good and equally balanced. Of course, it's still the rolled dice which dictates the game, but at least, the map is balanced.
 
 #### Still missing
 Even if the tiles placement is great, there is a single lacking feature. The harbor :anchor: configurations. You can still place the tiles rotated as you want, to make the entire map more enjoyable, just don't overdo it.
