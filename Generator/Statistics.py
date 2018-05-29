@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 
 
 class Statistics:
+    # TODO Implement statistics
     def __init__(self):
         self.coefficients = {}
         self.init_statistics()

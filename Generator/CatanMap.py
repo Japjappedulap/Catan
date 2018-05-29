@@ -25,6 +25,26 @@ class CatanMap:
         # self.statistics.close_statistics()
         # self.statistics.generate_graph()
 
+    def export(self):
+        """
+        JSON schema
+        {
+            type: *classic, extended*
+            tile: [elements]
+                if classic, list has 19 elements
+                if extended,list has 30 elements
+        }
+        Element schema
+        {
+            index: *0-19, 0-30*
+            resource_type: *LUMB, WOOL, GRAI, OREE, CLAY, DESE*
+            dice: *0, 2-12*
+        }
+
+        :return: JSON representing the map
+        """
+        pass
+
     def fix_tile(self, index, resource, dice):
         self.tile[index] = resource
         self.tile_dice[index] = dice

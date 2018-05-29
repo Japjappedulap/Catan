@@ -1,7 +1,7 @@
 import datetime
 
-from ClassicMap import ClassicMap
-from ExtendedMap import ExtendedMap
+from Generator.ClassicMap import ClassicMap
+from Generator.ExtendedMap import ExtendedMap
 
 
 def classic():
@@ -11,42 +11,45 @@ def classic():
     # no_player = 8  # desert in inner circle
 
     start_time = datetime.datetime.now()
-    x = ClassicMap()
-    x.generate_map(no_player)
+    catan_map = ClassicMap()
+    catan_map.generate_map(no_player)
     k = 0
-    while not x.completed():
-        # x = ClassicMap()
-        # x.generate_map(no_player)
-        x.clear()
-        x.generate_map(no_player)
-        # x.dbg()
+    while not catan_map.completed():
+        catan_map.clear()
+        catan_map.generate_map(no_player)
         k += 1
     print("completed in:", datetime.datetime.now() - start_time, "seconds, with", k, "attempts")
-    x.dbg()
+    catan_map.dbg()
+    dic = catan_map.export()
+    return dic
 
 
 def extended():
     start_time = datetime.datetime.now()
     no_player = 6
-    x = ExtendedMap()
-    x.generate_map(no_player)
+    catan_map = ExtendedMap()
+    catan_map.generate_map(no_player)
     k = 0
-    while not x.completed():
+    while not catan_map.completed():
         # x.dbg()
         # sleep(1)
-        x = ExtendedMap()
-        x.generate_map(no_player)
+        catan_map = ExtendedMap()
+        catan_map.generate_map(no_player)
         k += 1
     print("completed in:", datetime.datetime.now() - start_time, "seconds, with", k, "attempts")
-    x.dbg()
+    catan_map.dbg()
+    dic = catan_map.export()
+    return dic
 
 
 if __name__ == '__main__':
 
     # global_coefficient_records = []
     # test()
-    classic()
-    # extended()
+    v = classic()
+    print(v)
+    v = extended()
+    print(v)
 
     # from Statistics import Statistics
     # x = Statistics()

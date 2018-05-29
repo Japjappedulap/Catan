@@ -1,5 +1,7 @@
-import DiceState
-from CatanMap import CatanMap
+import json
+
+import Generator.DiceState
+from Generator.CatanMap import CatanMap
 
 
 class ExtendedMap(CatanMap):
@@ -51,10 +53,19 @@ class ExtendedMap(CatanMap):
         self.tile_to_name = {0: "none", 1: "LUMB", 2: "WOOL", 3: "GRAI", 4: "OREE", 5: "CLAY", 6: "DESE"}
         self.name_to_tile = {"LUMB": 1, "WOOL": 2, "GRAI": 3, "OREE": 4, "CLAY": 5, "DESE": 6}
         self.dice_probability = {2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 7: 6, 8: 5, 9: 4, 10: 3, 11: 2, 12: 1}
-        self.resource_distribution = DiceState.ExtendedDiceState()
+        self.resource_distribution = Generator.DiceState.ExtendedDiceState()
         self.tile_pairs = []
         for i in range(30):
             self.tile_pairs.append([])
+
+    def export(self):
+        # returns JSON object representing the map
+        export_dictionary = {'type': 'extended', 'tile': []}
+        for i in range(19):
+            export_dictionary['tile'].append({'index': i, 'resource_type': self.tile_to_name[self.tile[i]],
+                                              'dice': self.tile_dice[i]})
+        return json.dumps(export_dictionary)
+        pass
 
     def fix_desert(self, number_of_players):
         if number_of_players == 6:
@@ -249,7 +260,7 @@ class ExtendedMap(CatanMap):
         self.tile_to_name = {0: "none", 1: "LUMB", 2: "WOOL", 3: "GRAI", 4: "OREE", 5: "CLAY", 6: "DESE"}
         self.name_to_tile = {"LUMB": 1, "WOOL": 2, "GRAI": 3, "OREE": 4, "CLAY": 5, "DESE": 6}
         self.dice_probability = {2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 7: 6, 8: 5, 9: 4, 10: 3, 11: 2, 12: 1}
-        self.resource_distribution = DiceState.ExtendedDiceState()
+        self.resource_distribution = Generator.DiceState.ExtendedDiceState()
         self.tile_pairs = []
         for i in range(30):
             self.tile_pairs.append([])
