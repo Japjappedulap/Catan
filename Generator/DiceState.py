@@ -1,9 +1,9 @@
 import random
 
-INF = 9999999
-
 
 class DiceState:
+    INF = 9999999
+
     def __init__(self):
         self.configuration = {}
         self.resource_pool = {}
@@ -34,7 +34,7 @@ class DiceState:
 
     def min_coefficient(self):
         coefficients = self.all_coefficient()
-        result = INF
+        result = self.INF
         for i in coefficients:
             result = min(result, coefficients[i])
         return result
@@ -72,7 +72,7 @@ class DiceState:
                     completed_resource = False
                     break
             if completed_resource:
-                coefficient = INF
+                coefficient = self.INF
             to_sort.append((coefficient, resource_code))
         to_sort.sort()
         result = []
