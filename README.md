@@ -16,7 +16,7 @@ This was developed with `numpy`, so if you don't have it already, please install
  #### Use
  - For generating a classic map, just run `python3 classic.py`. The result should be something like this:
 
-                    DESE 0      OREE 6      LUMB 2	
+                    DESE 0      OREE 6       LUMB 2	
               GRAI 8	     WOOL 3      CLAY10	  WOOL 9	
         WOOL12      OREE10	    LUMB 6	   GRAI11	 CLAY 5	
               CLAY 8	     GRAI 3      WOOL 4	  LUMB 9	
