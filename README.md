@@ -26,7 +26,7 @@ This was developed with `numpy`, so if you don't have it already, please install
  
                           DESE 0      OREE 8      WOOL12      GRAI 8
                     LUMB 9      WOOL11      GRAI 4      OREE 5      LUMB12
-              OREE 3      CLAY10      LUMB 6      CLAY 3      GRAI 9     CLAY 6
+              OREE 3      CLAY10      LUMB 6      CLAY 3      GRAI 9      CLAY 6
         CLAY 6      GRAI 4      WOOL 3      OREE10      WOOL 9      LUMB 2
               LUMB11      CLAY 5      LUMB10      GRAI11      OREE 5
                     WOOL 4      GRAI 2      WOOL 8      DESE 0
