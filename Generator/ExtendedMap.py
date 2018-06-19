@@ -61,7 +61,7 @@ class ExtendedMap(CatanMap):
     def export(self):
         # returns JSON object representing the map
         export_dictionary = {'type': 'extended', 'tile': []}
-        for i in range(19):
+        for i in range(30):
             export_dictionary['tile'].append({'index': i, 'resource_type': self.tile_to_name[self.tile[i]],
                                               'dice': self.tile_dice[i]})
         return json.dumps(export_dictionary)
