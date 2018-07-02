@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Catan map generator - Japjappedulap</title>
+    <script src="/static/js.js"></script>
+    <link rel="stylesheet" href="/static/css.css">
+
+
+</head>
+<body>
+<div style="display:none;">
+    <img id="DESE" src="/static/img/desert.png" width="1500" height="1500">
+    <img id="CLAY" src="/static/img/clay.png" width="1500" height="1500">
+    <img id="OREE" src="/static/img/ore.png" width="1500" height="1500">
+    <img id="GRAI" src="/static/img/grain.png" width="1500" height="1500">
+    <img id="LUMB" src="/static/img/lumber.png" width="1500" height="1500">
+    <img id="WOOL" src="/static/img/wool.png" width="1500" height="1500">
+
+    <img id="2" src="/static/img/2.png" width="600" height="600">
+    <img id="3" src="/static/img/3.png" width="600" height="600">
+    <img id="4" src="/static/img/4.png" width="600" height="600">
+    <img id="5" src="/static/img/5.png" width="600" height="600">
+    <img id="6" src="/static/img/6.png" width="600" height="600">
+    <img id="8" src="/static/img/8.png" width="600" height="600">
+    <img id="9" src="/static/img/9.png" width="600" height="600">
+    <img id="10" src="/static/img/10.png" width="600" height="600">
+    <img id="11" src="/static/img/11.png" width="600" height="600">
+    <img id="12" src="/static/img/12.png" width="600" height="600">
+</div>
+<form>
+    <label>
+        <input type="radio" id="classic-radio-button" name="map type" value="classic" checked>
+        Classic (2-4 players)
+    </label><br>
+    <label>
+        <input type="radio" id="extended-radio-button" name="map type" value="extended">
+        Extended (5-6 players)
+    </label><br>
+</form>
+<button id="button" onclick="on_button_click()">Click me</button>
+<br>
+<canvas id="myCanvas" width="10000" height="7500"></canvas>
+</body>
+</html>
